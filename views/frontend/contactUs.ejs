@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include("./partial/head") %>
+</head>
+
+<body class="bg-blue-100">
+    <div class="bg-black max-w-md mx-auto py-4">
+        <%- include("./partial/navbar") %>
+            <div class="border-2 border-yellow-100 p-4">
+                <div class="text-center mb-6">
+                    <div class="text-yellow-100 text-3xl font-bold mb-6">Contact Us</div>
+                </div>
+                <section class="text-white">
+                    <div class="p-3">
+                        <div class="mb-5">
+                            <p class="mb-2">
+                                We love hearing from our users! Whether you have questions, feedback, or just want to
+                                say
+                                hello, there are several ways to connect with us. </p>
+                            <p>Feel free to reach out to us at any time. Our team is always here to assist you and
+                                ensure
+                                you have the best experience possible with Web Gamer. </p>
+                        </div>
+
+                        <form action="/contact-us" method="post">
+                            <div class="my-2">
+                                <label for="subject"
+                                    class="block mb-2 text-sm font-medium text-yellow-100 dark:text-white">Subject
+                                    :</label>
+                                <input type="text" id="subject" name="subject"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
+                                    placeholder="Enter Subject" />
+                            </div>
+
+                            <div class="my-2">
+                                <label for="email"
+                                    class="block mb-2 text-sm font-medium text-yellow-100 dark:text-white">Email
+                                    :</label>
+                                <input type="email" id="email" name="email"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
+                                    placeholder="Enter Email" />
+                            </div>
+
+                            <div class="my-2">
+                                <label for="message"
+                                    class="block mb-2 text-sm font-medium text-yellow-100 dark:text-white">Message
+                                    :</label>
+                                <textarea id="message" rows="4" name="message"
+                                    class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-yellow-500 focus:border-yellow-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
+                                    placeholder="Enter message"></textarea>
+                            </div>
+                            <button type="submit"
+                                class="text-black font-bold bg-yellow-100 hover:bg-yellow-200 focus:ring-4 focus:outline-none focus:ring-yellow-400 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:focus:ring-yellow-400 my-4">Submit</button>
+                        </form>
+                    </div>
+                </section>
+                <%- include("./partial/footer") %>
+            </div>
+    </div>
+</body>
+
+</html>

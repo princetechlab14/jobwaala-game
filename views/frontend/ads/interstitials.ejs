@@ -1,0 +1,81 @@
+<div id="interstitial-ad-container"></div>
+<script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js" crossorigin="anonymous"></script>
+
+<script>
+    window.googletag = window.googletag || { cmd: [] };
+
+    const InterstitialAdManager = {
+        interstitialSlot: null,
+        adReady: false,
+
+        init: function () {
+            googletag.cmd.push(() => {
+                this.interstitialSlot = googletag.defineOutOfPageSlot(
+                    '/21902364955,23207422491/Cm_moreglance.com_Games_And_Entertainment_Top/Cm_moreglance.com_Games_And_Entertainment_Interstitial',
+                    googletag.enums.OutOfPageFormat.INTERSTITIAL
+                );
+
+                if (this.interstitialSlot) {
+                    this.interstitialSlot.addService(googletag.pubads());
+
+                    googletag.pubads().addEventListener("slotRenderEnded", (event) => {
+                        if (event.slot === this.interstitialSlot) {
+                            if (event.isEmpty) {
+                                this.updateStatus("⚠️ Interstitial ad not filled.");
+                                this.adReady = false;
+                            } else {
+                                this.updateStatus("✅ Interstitial ad loaded.");
+                                this.adReady = true;
+                            }
+                        }
+                    });
+
+                    googletag.pubads().addEventListener("impressionViewable", (event) => {
+                        if (event.slot === this.interstitialSlot) {
+                            this.updateStatus("👁️ Interstitial ad is viewable.");
+                        }
+                    });
+
+                    googletag.enableServices();
+
+                    // Initial preload
+                    googletag.display(this.interstitialSlot);
+                } else {
+                    this.updateStatus("❌ Interstitial slot creation failed.");
+                }
+            });
+        },
+
+        refreshAndShow: function () {
+            googletag.cmd.push(() => {
+                if (this.interstitialSlot) {
+                    this.updateStatus("🔄 Refreshing interstitial ad...");
+                    googletag.pubads().refresh([this.interstitialSlot]);
+                } else {
+                    this.updateStatus("⚠️ Interstitial slot not initialized.");
+                }
+            });
+        },
+
+        updateStatus: function (msg) {
+            console.log("[INTERSTITIAL AD]", msg);
+        }
+    };
+
+    document.addEventListener("DOMContentLoaded", () => {
+        // InterstitialAdManager.init();
+        const btn = document.querySelector(".show-interstitial");
+        if (btn) {
+            btn.addEventListener("click", () => {
+                InterstitialAdManager.refreshAndShow();
+            });
+        }
+    });
+</script>
+
+<!-- /21902364955,23207422491/Cm_moreglance.com_Games_And_Entertainment_Top/Cm_moreglance.com_Games_And_Entertainment_Interstitial -->
+<div id='div-gpt-ad-1747302106458-0'>
+    <script>
+        googletag.cmd.push(function () { googletag.display('div-gpt-ad-1747302106458-0'); });
+    </script>
+</div>

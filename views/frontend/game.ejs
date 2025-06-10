@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include("./partial/head") %>
+</head>
+
+<body class="bg-blue-100">
+    <div class="bg-black shadow-lg max-w-md mx-auto py-4">
+        <%- include("./partial/navbar") %>
+            <div class="border-2 border-yellow-100 p-4">
+                <div class="text-center mb-6">
+                    <div class="show-interstitial text-yellow-100 text-3xl font-bold mb-6">Popular Games</div>
+                    <%- include("./ads/1") %>
+                        <div class="grid grid-cols-2 gap-6 justify-items-center py-6 px-2">
+                            <% let adCount=1; %>
+                                <% games.forEach((game, index)=> {
+                                    const randomUsers = Math.floor(Math.random() * (7000 - 3000 + 1)) + 3000;
+                                    const coinUser = Math.floor(Math.random() * (10000 - 1000 + 1)) + 1000;
+                                    %>
+                                    <a href="/<%= game.slug %>"
+                                        class="show-interstitial bg-black rounded-2xl border-2 border-yellow-100 shadow-lg flex flex-col items-center p-4">
+                                        <div class="text-center text-yellow-100 font-bold text-lg mb-2 tracking-wide">
+                                            <%= game.title %>
+                                        </div>
+                                        <img src="<%= game.logo %>" alt="<%= game.title %>"
+                                            class="rounded-xl w-40 h-32 object-cover mb-2 border-2 border-yellow-100">
+
+                                        <div
+                                            class="flex items-center justify-center space-x-2 text-yellow-100 text-sm mb-2">
+                                            <span class="text-md font-bold">Play &amp; Win</span>
+                                            <i class="fa-solid fa-coins"></i>
+                                            <span class="font-bold">
+                                                <%= coinUser %>
+                                            </span>
+                                        </div>
+                                        <button
+                                            class="bg-yellow-300 hover:bg-yellow-400 text-[#22004a] font-bold w-full rounded-xl py-2 text-lg mb-3 transition">START
+                                            GAME</button>
+                                        <div class="flex items-center justify-center space-x-2 w-full">
+                                            <span class="w-3 h-3 bg-green-400 rounded-full inline-block"></span>
+                                            <span class="text-green-300 text-sm font-semibold">
+                                                <%= randomUsers %> Users
+                                            </span>
+                                        </div>
+                                    </a>
+                                    <% if ((index + 1) % 6===0 && adCount <=7) { adCount++; %>
+                                        <div class="col-span-2">
+                                            <%- include(`./ads/${adCount}`) %>
+                                        </div>
+                                        <% }}) %>
+                        </div>
+                </div>
+                <%- include("./partial/footer") %>
+            </div>
+    </div>
+
+</body>
+
+</html>
