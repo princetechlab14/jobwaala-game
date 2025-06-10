@@ -1,0 +1,72 @@
+<script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"></script>
+<script>
+    window.googletag = window.googletag || { cmd: [] };
+    googletag.cmd.push(function () {
+        var REFRESH_KEY = 'refresh';
+        var REFRESH_VALUE = 'true';
+        var mapping = googletag.sizeMapping().
+            addSize([800, 90], [728, 90]).
+            addSize([0, 0], [320, 50]).
+            build();
+        googletag.defineSlot('/22846411849,23044715016/JBM_jobwaala.in_Bottomsticky', [728, 90], 'div-gpt-ad-1746429658343-0').setTargeting(REFRESH_KEY, REFRESH_VALUE).defineSizeMapping(mapping).addService(googletag.pubads());
+        var SECONDS_TO_WAIT_AFTER_VIEWABILITY = 30;
+
+        googletag.pubads().addEventListener('impressionViewable', function (event) {
+            var slot = event.slot;
+            if (slot.getTargeting(REFRESH_KEY).indexOf(REFRESH_VALUE) > -1) {
+                setTimeout(function () {
+                    googletag.pubads().refresh([slot]);
+                }, SECONDS_TO_WAIT_AFTER_VIEWABILITY * 1000);
+            }
+        });
+        googletag.pubads().enableSingleRequest();
+        googletag.enableServices();
+    });
+</script>
+<style type='text/css'>
+    .sticky_ad_beta {
+        width: 100%;
+        float: left;
+        text-align: center;
+        background: #fff;
+        position: fixed;
+        bottom: 0px;
+        left: 0px;
+        z-index: 99;
+        padding-top: 4px;
+        box-shadow: 0 -3px 3px rgba(0, 0, 0, .2) !important;
+    }
+
+    footer {
+        padding-bottom: 120px;
+    }
+
+    .close_sticky_ad_beta {
+        position: absolute;
+        top: -20px;
+        background: #fff;
+        color: #000;
+        right: 12px;
+        height: 20px;
+        width: 20px;
+        font-size: 26px;
+        line-height: 23px;
+        box-shadow: 0 -3px 3px rgba(0, 0, 0, .2) !important;
+        border-radius: 2px 2px 0 0;
+    }
+</style>
+<div class="sticky_ad_beta" id="sticky_ad_beta">
+    <span class="close_sticky_ad_beta" id="close_sticky_ad_beta"> × </span>
+    <!-- /22846411849,23044715016/JBM_jobwaala.in_Bottomsticky -->
+    <div id='div-gpt-ad-1746429658343-0'>
+        <script>
+            googletag.cmd.push(function () { googletag.display('div-gpt-ad-1746429658343-0'); });
+        </script>
+    </div>
+</div>
+<script type="text/javascript">
+    document.getElementById("close_sticky_ad_beta").onclick = function () {
+        document.getElementById("sticky_ad_beta").style.display = "none";
+        document.getElementById("sticky_ad_beta").innerHTML = "";
+    }
+</script>

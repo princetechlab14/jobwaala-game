@@ -1,56 +1,56 @@
-<%- include(`../ads/8`) %>
-    <hr class="border-yellow-100 border-1 my-8">
-    <footer class="my-4 flex justify-center">
-        <div class="grid grid-cols-3 gap-6">
-            <div class="relative flex flex-col items-center space-y-2 hover:-top-1 transition-all duration-200">
-                <a href="/"
-                    class="flex items-center space-x-1 text-yellow-100 font-bold text-lg hover:text-yellow-100 transition">
-                    <i class="fas fa-gamepad"></i>
-                    <span>Games</span>
-                </a>
-            </div>
-
-            <div class="relative flex flex-col items-center space-y-2 hover:-top-1 transition-all duration-200">
-                <a href="/about"
-                    class="flex items-center space-x-1 text-yellow-100 font-bold text-lg hover:text-yellow-100 transition">
-                    <i class="fas fa-info-circle"></i>
-                    <span>About</span>
-                </a>
-            </div>
-
-            <div class="relative flex flex-col items-center space-y-2 hover:-top-1 transition-all duration-200">
-                <a href="/privacy-policy"
-                    class="flex items-center space-x-1 text-yellow-100 font-bold text-lg hover:text-yellow-100 transition">
-                    <i class="fas fa-shield-alt"></i>
-                    <span>Privacy</span>
-                </a>
-            </div>
-
-            <div class="relative flex flex-col items-center space-y-2 hover:-top-1 transition-all duration-200">
-                <a href="/term-use"
-                    class="flex items-center space-x-1 text-yellow-100 font-bold text-lg hover:text-yellow-100 transition">
-                    <i class="fa-solid fa-scale-balanced"></i>
-                    <span>Terms</span>
-                </a>
-            </div>
-            <div class="relative flex flex-col items-center space-y-2 hover:-top-1 transition-all duration-200">
-                <a href="/contact-us"
-                    class="flex items-center space-x-1 text-yellow-100 font-bold text-lg hover:text-yellow-100 transition">
-                    <i class="fas fa-headset"></i>
-                    <span>Support</span>
-                </a>
-            </div>
+<hr class="border-yellow-100 border-1 my-8">
+<footer class="my-4 flex justify-center">
+    <div class="grid grid-cols-3 gap-6">
+        <div class="relative flex flex-col items-center space-y-2 hover:-top-1 transition-all duration-200">
+            <a href="/"
+                class="flex items-center space-x-1 text-yellow-100 font-bold text-lg hover:text-yellow-100 transition">
+                <i class="fas fa-gamepad"></i>
+                <span>Games</span>
+            </a>
         </div>
-    </footer>
 
-    <script>
-        const toggleButton = document.getElementById('menu-toggle');
-        const navMenu = document.getElementById('navbar-search');
+        <div class="relative flex flex-col items-center space-y-2 hover:-top-1 transition-all duration-200">
+            <a href="/about"
+                class="flex items-center space-x-1 text-yellow-100 font-bold text-lg hover:text-yellow-100 transition">
+                <i class="fas fa-info-circle"></i>
+                <span>About</span>
+            </a>
+        </div>
 
-        toggleButton.addEventListener('click', () => {
-            navMenu.classList.toggle('hidden');
-        });
-    </script>
+        <div class="relative flex flex-col items-center space-y-2 hover:-top-1 transition-all duration-200">
+            <a href="/privacy-policy"
+                class="flex items-center space-x-1 text-yellow-100 font-bold text-lg hover:text-yellow-100 transition">
+                <i class="fas fa-shield-alt"></i>
+                <span>Privacy</span>
+            </a>
+        </div>
 
-    <%- include(`../ads/interstitials`) %>
-        <%- include(`../ads/rewarded`) %>
+        <div class="relative flex flex-col items-center space-y-2 hover:-top-1 transition-all duration-200">
+            <a href="/term-use"
+                class="flex items-center space-x-1 text-yellow-100 font-bold text-lg hover:text-yellow-100 transition">
+                <i class="fa-solid fa-scale-balanced"></i>
+                <span>Terms</span>
+            </a>
+        </div>
+        <div class="relative flex flex-col items-center space-y-2 hover:-top-1 transition-all duration-200">
+            <a href="/contact-us"
+                class="flex items-center space-x-1 text-yellow-100 font-bold text-lg hover:text-yellow-100 transition">
+                <i class="fas fa-headset"></i>
+                <span>Support</span>
+            </a>
+        </div>
+    </div>
+</footer>
+
+<script>
+    const toggleButton = document.getElementById('menu-toggle');
+    const navMenu = document.getElementById('navbar-search');
+
+    toggleButton.addEventListener('click', () => {
+        navMenu.classList.toggle('hidden');
+    });
+</script>
+
+<%- include(`../ads/interstitials`) %>
+    <%- include(`../ads/rewarded`) %>
+        <%- include(`../ads/bottomsticky`) %>
