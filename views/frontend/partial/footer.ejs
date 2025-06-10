@@ -43,11 +43,15 @@
 </footer>
 
 <script>
-    const toggleButton = document.getElementById('menu-toggle');
-    const navMenu = document.getElementById('navbar-search');
+    document.addEventListener("DOMContentLoaded", function () {
+        const toggleButton = document.getElementById('menu-toggle');
+        const navMenu = document.getElementById('navbar-search');
 
-    toggleButton.addEventListener('click', () => {
-        navMenu.classList.toggle('hidden');
+        if (toggleButton && navMenu) {
+            toggleButton.addEventListener('click', () => {
+                navMenu.classList.toggle('hidden');
+            });
+        }
     });
 </script>
 
