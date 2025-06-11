@@ -3,11 +3,11 @@ const { GameModel, ContactUsModel } = require("../models");
 const Home = async (req, res) => {
     try {
         const games = await GameModel.findAll({ where: { status: "Active" } });
-        // if (!req.cookies.GLE) {
-        //     res.cookie('GLE', true, { maxAge: 30 * 24 * 60 * 60 * 1000 }); // 30 days
+        if (!req.cookies.GLE) {
+            res.cookie('GLE', true, { maxAge: 30 * 24 * 60 * 60 * 1000 }); // 30 days
             return res.render('frontend/start', { games });
-        // }
-        // res.render('frontend/game', { games });
+        }
+        res.render('frontend/game', { games });
     } catch (error) {
         console.error("Error Fetching Home:", error);
         res.status(500).send("Internal Server Error");
