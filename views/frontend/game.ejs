@@ -11,9 +11,7 @@
             <div class="border-2 border-yellow-100 p-4">
                 <div class="text-center mb-6">
                     <div class="show-interstitial text-yellow-100 text-3xl font-bold mb-6">Popular Games</div>
-                    <%- include("./ads/1") %>
                         <div class="grid grid-cols-2 gap-6 justify-items-center py-6 px-2">
-                            <% let adCount=1; %>
                                 <% games.forEach((game, index)=> {
                                     const randomUsers = Math.floor(Math.random() * (7000 - 3000 + 1)) + 3000;
                                     const coinUser = Math.floor(Math.random() * (10000 - 1000 + 1)) + 1000;
@@ -44,11 +42,7 @@
                                             </span>
                                         </div>
                                     </a>
-                                    <% if ((index + 1) % 6===0 && adCount <=7) { adCount++; %>
-                                        <div class="col-span-2">
-                                            <%- include(`./ads/${adCount}`) %>
-                                        </div>
-                                        <% }}) %>
+                                        <% }) %>
                         </div>
                 </div>
                 <%- include("./partial/footer") %>

@@ -19,7 +19,6 @@
                         PLAY NOW
                     </a>
                 </div>
-                <%- include("./ads/1") %>
                     <div class="px-4">
                         <div class="show-rewarded text-yellow-100 text-3xl font-bold">
                             <%= gameDetail?.title %>
@@ -29,7 +28,6 @@
                         <div class="show-interstitial text-yellow-100 text-3xl font-bold my-1">How to play</div>
                         <p class="text-white">Tap at the right moment to bat and score runs.</p>
 
-                        <%- include("./ads/2") %>
 
                             <div class="text-yellow-100 text-3xl font-bold my-4">You May Also Like</div>
 
@@ -65,11 +63,7 @@
                                                 </span>
                                             </div>
                                         </a>
-                                        <% if ((index + 1) % 6===0 && adCount <=7) { adCount++; %>
-                                            <div class="col-span-2">
-                                                <%- include(`./ads/${adCount}`) %>
-                                            </div>
-                                            <% }}) %>
+                                            <% }) %>
                             </div>
                     </div>
                     <%- include("./partial/footer") %>
