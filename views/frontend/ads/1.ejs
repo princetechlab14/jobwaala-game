@@ -1,2 +1,18 @@
 <div data-type="_mgwidget" data-widget-id="1804639"></div>
-<script>(function(w,q){w[q]=w[q]||[];w[q].push(["_mgc.load"])})(window,"_mgq");</script>
+<script>(function (w, q) { w[q] = w[q] || []; w[q].push(["_mgc.load"]) })(window, "_mgq");</script>
+<script>
+    window.addEventListener('DOMContentLoaded', function () {
+        const adContainer = document.querySelector('[data-widget-id="1804639"]');
+        const enforceSelfTarget = setInterval(() => {
+            if (!adContainer) return;
+            const adLinks = adContainer.querySelectorAll('a[target="_blank"]');
+            adLinks.forEach(link => {
+                link.setAttribute('target', '_self');
+            });
+            if (adLinks.length > 0) {
+                clearInterval(enforceSelfTarget);
+            }
+        }, 500);
+        setTimeout(() => clearInterval(enforceSelfTarget), 10000);
+    });
+</script>
