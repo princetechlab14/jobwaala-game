@@ -1,0 +1,78 @@
+<style>
+    /* Modal styles */
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 9999;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .modal-content {
+        background-color: #fff;
+        margin: 10% auto;
+        padding: 20px;
+        border-radius: 10px;
+        width: 90%;
+        max-width: 600px;
+        position: relative;
+    }
+
+    .close {
+        color: #aaa;
+        position: absolute;
+        top: 10px;
+        right: 20px;
+        font-size: 28px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+</style>
+
+<!-- Modal -->
+<div id="adModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+
+        <!-- Ad Container -->
+        <div id="adContainer">
+            <div data-type="_mgwidget" data-widget-id="1804381"></div>
+        </div>
+    </div>
+</div>
+
+<!-- MGID Ad Script -->
+<script>
+    // Load the MGID ad widget script
+    (function (w, q) {
+        w[q] = w[q] || [];
+        w[q].push(["_mgc.load"]);
+    })(window, "_mgq");
+</script>
+
+<!-- Auto-show modal + handle close -->
+<script>
+    window.addEventListener('DOMContentLoaded', function () {
+        const modal = document.getElementById('adModal');
+        const closeBtn = document.querySelector('.close');
+
+        // Show modal on page load
+        modal.style.display = 'block';
+
+        // Close button logic
+        closeBtn.addEventListener('click', function () {
+            modal.style.display = 'none';
+        });
+
+        // Click outside modal to close
+        window.addEventListener('click', function (e) {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+    });
+</script>

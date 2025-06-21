@@ -1,16 +1,28 @@
 <div id="adContainer">
-    <div data-type="_mgwidget" data-widget-id="1804324"></div>
+    <div id="adWidget" data-type="_mgwidget" data-widget-id="1804324"></div>
 </div>
 
 <script>
+    // Initial ad load
     (function (w, q) {
         w[q] = w[q] || [];
         w[q].push(["_mgc.load"]);
     })(window, "_mgq");
 
+    // Back button click
     document.querySelector('.back-button').addEventListener("click", function () {
         const adContainer = document.getElementById("adContainer");
-        adContainer.style.display = "block";
+
+        // Clear existing ad
+        adContainer.innerHTML = '';
+
+        // Recreate ad widget div
+        const newAd = document.createElement("div");
+        newAd.setAttribute("data-type", "_mgwidget");
+        newAd.setAttribute("data-widget-id", "1804324");
+        adContainer.appendChild(newAd);
+
+        // Re-run the ad script to load it again
         (function (w, q) {
             w[q] = w[q] || [];
             w[q].push(["_mgc.load"]);
