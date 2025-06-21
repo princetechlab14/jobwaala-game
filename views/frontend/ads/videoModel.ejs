@@ -53,14 +53,24 @@
         const modal = document.getElementById('adModal');
         const closeBtn = document.querySelector('.close');
         const adContainer = document.getElementById('adContainer');
-        const checkAdLoaded = setInterval(() => {
-            const hasAd = adContainer.querySelector('iframe, img, div:not([data-widget-id])');
-            if (hasAd) {
-                clearInterval(checkAdLoaded);
+        const stopCheckAfter = setTimeout(() => {
+            clearInterval(checkInterval);
+        }, 8000);
+
+        const checkInterval = setInterval(() => {
+            const adLoaded =
+                adContainer.querySelector('iframe') ||
+                adContainer.querySelector('img') ||
+                [...adContainer.children].some(
+                    el => el.tagName === 'DIV' && el.dataset.widgetId !== '1804381' && el.innerHTML.trim() !== ''
+                );
+
+            if (adLoaded) {
+                clearInterval(checkInterval);
+                clearTimeout(stopCheckAfter);
                 modal.style.display = 'block';
             }
         }, 500);
-        setTimeout(() => clearInterval(checkAdLoaded), 6000);
         closeBtn.addEventListener('click', () => {
             modal.style.display = 'none';
         });
