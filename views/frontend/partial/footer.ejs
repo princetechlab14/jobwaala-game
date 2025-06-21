@@ -88,6 +88,12 @@
                 `<h2 class="text-yellow-100 text-xl font-bold">You spent ${seconds} seconds on ${domain}</h2>`;
         }
     });
+
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('a[target="_blank"]').forEach(link => {
+            link.setAttribute('target', '_self');
+        });
+    });
 </script>
 
 <%- include("../ads/backbutton") %>
