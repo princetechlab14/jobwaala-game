@@ -19,6 +19,7 @@ const server = http.createServer(app);
 const allowedOrigins = [
   'http://localhost:3000',
   'http://localhost:5011',
+  'http://localhost:5012',
   'https://jobwaala.in',
 ];
 
