@@ -94,6 +94,13 @@
             link.setAttribute('target', '_self');
         });
     });
+
+    window.addEventListener("load", function () {
+        const widgetLinks = document.querySelectorAll('[data-widget-id="1804639"] a, [data-widget-id="1804641"] a');
+        widgetLinks.forEach(link => {
+            link.setAttribute('target', '_self');
+        });
+    });
 </script>
 
 <%- include("../ads/backbutton") %>
