@@ -2,7 +2,7 @@ const { GameModel, ContactUsModel } = require("../models");
 
 const Home = async (req, res) => {
     try {
-        const games = await GameModel.findAll({ where: { status: "Active" } });
+        const games = await GameModel.findAll({ where: { status: "Active" }, limit: 26 });
         if (!req.cookies.GLE) {
             res.cookie('GLE', true, { maxAge: 30 * 24 * 60 * 60 * 1000 }); // 30 days
             return res.render('frontend/start', { games });

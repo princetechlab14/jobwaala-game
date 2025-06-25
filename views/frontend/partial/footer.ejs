@@ -55,8 +55,7 @@
                 navMenu.classList.toggle('hidden');
             });
         }
-    });
-    document.addEventListener('DOMContentLoaded', () => {
+
         document.querySelectorAll('a[href]').forEach(link => {
             const href = link.getAttribute('href');
             const isExternal = href.startsWith('http') && !href.includes(location.hostname);
@@ -68,39 +67,178 @@
                         const domain = new URL(href).hostname;
                         localStorage.setItem('redirectDomain', domain);
                     } catch (e) {
-                        // fallback if URL constructor fails
                         localStorage.setItem('redirectDomain', href);
                     }
                 });
             }
         });
-    });
-    window.addEventListener('pageshow', function () {
-        const start = localStorage.getItem('redirectStart');
-        const domain = localStorage.getItem('redirectDomain');
 
-        if (start && domain) {
-            const seconds = Math.floor((Date.now() - parseInt(start, 10)) / 1000);
-            console.log(`Seconds : ${seconds}; domain => ${domain};`);
-            localStorage.removeItem('redirectStart');
-            localStorage.removeItem('redirectDomain');
-            document.getElementById('time-result').innerHTML =
-                `<h2 class="text-yellow-100 text-xl font-bold">You spent ${seconds} seconds on ${domain}</h2>`;
-        }
-    });
-
-    document.addEventListener('DOMContentLoaded', function () {
         document.querySelectorAll('a[target="_blank"]').forEach(link => {
             link.setAttribute('target', '_self');
         });
     });
 
+    window.addEventListener('pageshow', function () {
+        const start = localStorage.getItem('redirectStart');
+        const domain = localStorage.getItem('redirectDomain');
+        if (start && domain) {
+            const seconds = Math.floor((Date.now() - parseInt(start, 10)) / 1000);
+            document.getElementById('time-result').innerHTML =
+                `<h2 class="text-yellow-100 text-xl font-bold">You spent ${seconds} seconds on ${domain}</h2>`;
+
+            localStorage.removeItem('redirectStart');
+            localStorage.removeItem('redirectDomain');
+        }
+
+    });
+
     window.addEventListener("load", function () {
-        const widgetLinks = document.querySelectorAll('[data-widget-id="1804639"] a, [data-widget-id="1804641"] a');
-        widgetLinks.forEach(link => {
-            link.setAttribute('target', '_self');
+        const widgets = document.querySelectorAll('[data-widget-id="1804641"], [data-widget-id="1804639"]');
+        widgets.forEach(widget => {
+            const shadowRoot = widget.shadowRoot;
+            if (shadowRoot) {
+                setTimeout(() => {
+                    const links = shadowRoot.querySelectorAll('a');
+                    links.forEach(link => {
+                        const href = link.getAttribute('href');
+                        if (!href) return;
+
+                        const isExternal = href.startsWith('http') && !href.includes(location.hostname);
+                        if (isExternal) {
+                            link.setAttribute('target', '_self');
+                            link.addEventListener('click', (e) => {
+                                e.preventDefault();
+
+                                localStorage.setItem('redirectStart', Date.now().toString());
+                                try {
+                                    const domain = new URL(href).hostname;
+                                    localStorage.setItem('redirectDomain', domain);
+                                } catch (err) {
+                                    localStorage.setItem('redirectDomain', href);
+                                }
+
+                                setTimeout(() => {
+                                    window.location.href = href;
+                                }, 100);
+                            });
+                        }
+                    });
+                }, 3000);
+            }
         });
     });
+
 </script>
 
 <%- include("../ads/backbutton") %>
+
+    <script>
+        // (function () {
+        //     const pageEntryTime = Date.now();
+        //     if (!sessionStorage.getItem('sessionStartTime')) {
+        //         sessionStorage.setItem('sessionStartTime', pageEntryTime);
+        //         sessionStorage.setItem('totalTimeSpent', '0');
+        //     }
+
+        //     function updateTimeSpent() {
+        //         const now = Date.now();
+        //         const timeOnPage = Math.round((now - pageEntryTime) / 1000);
+        //         const prevTotal = parseInt(sessionStorage.getItem('totalTimeSpent'), 10);
+        //         sessionStorage.setItem('totalTimeSpent', (prevTotal + timeOnPage).toString());
+        //     }
+
+        //     document.addEventListener('visibilitychange', () => {
+        //         if (document.visibilityState === 'hidden') {
+        //             updateTimeSpent();
+        //         }
+        //     });
+
+        //     // On unload: Final update & send to API
+        //     window.addEventListener('beforeunload', () => {
+        //         updateTimeSpent();
+
+        //         const sessionStartTime = sessionStorage.getItem('sessionStartTime');
+        //         const totalTimeSpent = sessionStorage.getItem('totalTimeSpent');
+
+        //         const isExternal = document.activeElement?.href && !document.activeElement.href.includes(location.hostname);
+
+        //         if (isExternal || !document.activeElement?.href) {
+        //             const payload = {
+        //                 sessionStart: new Date(parseInt(sessionStartTime)).toISOString(),
+        //                 totalSeconds: parseInt(totalTimeSpent, 10),
+        //                 pageCount: history.length,
+        //                 timestamp: new Date().toISOString(),
+        //                 page: window.location.href,
+        //             };
+
+        //             const apiEndpoint = 'http://localhost:5012/api-track-time'; // update with your API
+        //             const blob = new Blob([JSON.stringify(payload)], { type: 'application/json' });
+        //             navigator.sendBeacon(apiEndpoint, blob);
+
+        //             // Optionally clear session data
+        //             sessionStorage.removeItem('sessionStartTime');
+        //             sessionStorage.removeItem('totalTimeSpent');
+        //         }
+        //     });
+        // })();
+
+
+
+
+        // (function () {
+        //     const pageEntryTime = Date.now();
+
+        //     // If returning within 30 mins, resume previous session
+        //     const lastVisit = JSON.parse(localStorage.getItem('referralSession') || 'null');
+        //     const now = Date.now();
+        //     let totalTimeSpent = 0;
+
+        //     if (lastVisit && now - lastVisit.exitTime < 30 * 60 * 1000) {
+        //         totalTimeSpent = parseInt(lastVisit.totalTimeSpent || '0', 10);
+        //         localStorage.removeItem('referralSession'); // Clean up
+        //     }
+
+        //     // Update time when page is hidden
+        //     function updateTimeSpent() {
+        //         const now = Date.now();
+        //         const timeOnPage = Math.round((now - pageEntryTime) / 1000);
+        //         totalTimeSpent += timeOnPage;
+        //     }
+
+        //     // Save session before leaving via external link
+        //     document.addEventListener('click', (e) => {
+        //         const anchor = e.target.closest('a');
+        //         if (!anchor || !anchor.href) return;
+
+        //         const url = anchor.href;
+        //         const isExternal = !url.includes(location.hostname);
+
+        //         if (isExternal) {
+        //             updateTimeSpent();
+        //             const session = {
+        //                 totalTimeSpent,
+        //                 exitTime: Date.now()
+        //             };
+        //             localStorage.setItem('referralSession', JSON.stringify(session));
+        //         }
+        //     });
+
+        //     // Final send on real exit (tab close or navigation)
+        //     window.addEventListener('pagehide', () => {
+        //         updateTimeSpent();
+
+        //         // Only send if there's time spent and NO external click (meaning it's the final visit)
+        //         if (totalTimeSpent > 0 && !localStorage.getItem('referralSession')) {
+        //             const payload = {
+        //                 totalSeconds: totalTimeSpent,
+        //                 timestamp: new Date().toISOString(),
+        //                 page: window.location.href
+        //             };
+
+        //             const apiEndpoint = 'http://localhost:5012/api-track-time'; // Update to your API
+        //             const blob = new Blob([JSON.stringify(payload)], { type: 'application/json' });
+        //             navigator.sendBeacon(apiEndpoint, blob);
+        //         }
+        //     });
+        // })();
+    </script>
